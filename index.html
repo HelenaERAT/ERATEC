@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ERA TÉCNICA — Estrutura de Cargos e Carreira</title>
+<title>ERA TÉCNICA — Portal de Recursos Humanos</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -343,38 +343,143 @@
   .status-tag{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 9px;display:inline-block;margin-bottom:12px}
   .status-feito{background:var(--g6);color:var(--g1)}
   .status-plano{background:#fff3c0;color:#6b4c00}
+
+  /* ════ MODELO 2 — NAVEGAÇÃO LATERAL VERTICAL ════ */
+  body{padding-left:268px}
+  nav{display:none}
+  .sidebar{position:fixed;top:0;left:0;bottom:0;width:268px;background:linear-gradient(180deg,var(--g1) 0%,#102610 100%);border-right:2px solid var(--g2);display:flex;flex-direction:column;z-index:140;overflow-y:auto;transition:transform .25s ease}
+  .sidebar::-webkit-scrollbar{width:6px}
+  .sidebar::-webkit-scrollbar-thumb{background:var(--g2)}
+  .sidebar .nav-logo{padding:26px 24px 20px;border-bottom:1px solid rgba(255,255,255,.08);display:block}
+  .sidebar-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:4px;color:var(--g4);text-transform:uppercase;padding:22px 26px 10px}
+  .sidebar .nav-links{display:flex;flex-direction:column;gap:3px;padding:8px 14px;position:static;background:none;border:none}
+  .sidebar .nav-links a{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;border-left:3px solid transparent;font-size:13px;font-weight:500;letter-spacing:.8px;color:rgba(255,255,255,.78)}
+  .sidebar .nav-links a:hover{background:rgba(255,255,255,.07);color:#fff}
+  .sidebar .nav-links a.active{background:rgba(170,255,0,.13);border-left-color:var(--lime);color:var(--lime)}
+  .nl-ico{width:20px;text-align:center;font-size:15px;flex-shrink:0}
+  .sidebar-foot{margin-top:auto;padding:20px 26px 26px;border-top:1px solid rgba(255,255,255,.08);font-size:11.5px;color:rgba(255,255,255,.5);line-height:1.9}
+  .sidebar-foot strong{color:rgba(255,255,255,.8);font-weight:600}
+  .nav-toggle{position:fixed;top:14px;left:14px;z-index:160;background:var(--g1);border:1px solid var(--g2);border-radius:10px}
+
+  /* hero em duas colunas */
+  .hero{margin-top:0;display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center;background:radial-gradient(1100px 520px at 88% -10%,rgba(170,255,0,.13),transparent 60%),linear-gradient(135deg,var(--g1),#11300f)}
+  .hero-stats{flex-wrap:wrap;gap:14px}
+  .hero .stat-block{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:18px 26px;margin-right:0}
+  .hero-art{max-width:100%;height:auto;display:block;animation:fadeUp .6s .25s ease forwards;opacity:0}
+
+  /* cartões arredondados e elevação */
+  .overview-grid,.compliance-grid,.comunicados-grid,.desc-grid{gap:14px;background:transparent;border:none}
+  .overview-card,.compliance-card,.comunicado-card,.desc-card,.planilha-card{border:1px solid var(--border);border-radius:16px;box-shadow:0 2px 8px rgba(13,26,13,.05)}
+  .overview-card:hover,.comunicado-card:hover,.desc-card:hover,.planilha-card:hover{transform:translateY(-4px);box-shadow:0 12px 26px rgba(13,26,13,.13)}
+  .overview-card::before{border-radius:16px 16px 0 0}
+  .comunicado-card::after{border-radius:0 0 16px 16px}
+  .dept-intro,.steps-grid,.book-pages-wrapper,.com-modal,.desc-modal,.planilha-modal{border-radius:16px;overflow:hidden}
+  .steps-grid{overflow-x:auto}
+  .planilha-search-input{border-radius:12px}
+  .book-prev,.book-next{border-radius:10px}
+  .badge,.status-tag,.com-tag,.role-chip,.desc-chip{border-radius:999px}
+  .book-highlight{border-radius:0 14px 14px 0}
+  .back-top{border-radius:12px}
+
+  /* filtros em formato de pílula */
+  .dept-nav,.desc-filter-row{background:transparent;border:none;gap:8px;overflow:visible}
+  .dept-btn,.desc-filter-btn{background:var(--white);border:1px solid var(--border);border-radius:999px;color:var(--muted)}
+  .dept-btn:hover,.desc-filter-btn:hover{background:var(--g7);color:var(--g1)}
+  .dept-btn.active,.desc-filter-btn.active{background:var(--g1);color:var(--lime);border-color:var(--g1)}
+
+  /* status "em andamento" */
+  .status-andamento{background:#c0e8f0;color:#0a4a5a}
+
+  /* painel de projetos (kanban) */
+  .kanban{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .kanban-col{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:22px;box-shadow:0 2px 8px rgba(13,26,13,.05)}
+  .kanban-col-head{display:flex;align-items:center;gap:10px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--border)}
+  .kanban-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+  .kanban-col h3{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--ink)}
+  .kanban-count{margin-left:auto;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;background:var(--g7);border-radius:999px;padding:2px 10px;color:var(--g2)}
+  .kb-card{background:var(--off);border:1px solid var(--border);border-left:4px solid var(--g3);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+  .kb-card:last-child{margin-bottom:0}
+  .kb-card h4{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;color:var(--ink)}
+  .kb-card p{font-size:12.5px;color:var(--muted);line-height:1.6;font-weight:300}
+  .col-doing .kb-card{border-left-color:#2a9ab8}
+  .col-next .kb-card{border-left-color:#c08000}
+  .kb-bar{height:6px;border-radius:999px;background:var(--g6);margin-top:10px;overflow:hidden}
+  .kb-bar i{display:block;height:100%;background:var(--g3);border-radius:999px}
+
+  @media(max-width:1100px){.hero{grid-template-columns:1fr}.hero-art{max-width:440px}.kanban{grid-template-columns:1fr}}
+  @media(max-width:768px){
+    body{padding-left:0}
+    .sidebar{transform:translateX(-100%);width:280px}
+    .sidebar.open{transform:translateX(0);box-shadow:0 0 0 100vmax rgba(0,0,0,.45)}
+    .sidebar .nav-links{display:flex}
+    .hero{padding-top:88px}
+  }
+
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">
-    <img src="data:image/jpeg;base64,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" alt="ERA TÉCNICA" style="height:44px;display:block;">
-  </a>
-  <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" onclick="toggleNav()">☰</button>
+<!-- NAV LATERAL -->
+<button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" onclick="toggleNav()">☰</button>
+<aside class="sidebar" id="sidebar">
+  <a href="#" class="nav-logo"><img src="data:image/jpeg;base64,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" alt="ERA TÉCNICA" style="height:44px;display:block;"></a>
+  <div class="sidebar-label">Navegação</div>
   <ul class="nav-links" id="nav-links">
-    <li><a href="#visao-geral">Visão Geral</a></li>
-    <li><a href="#estrutura">Estrutura</a></li>
-    <li><a href="#descricao">Descrições de Cargos</a></li>
-    <li><a href="#comunicados">Comunicados</a></li>
-    <li><a href="#saude">Saúde Preventiva</a></li>
-    <li><a href="#sesmt">SESMT</a></li>
-    <li><a href="#equidade">Equidade</a></li>
-    <li><a href="#compliance">Compliance</a></li>
+    <li><a href="#visao-geral"><span class="nl-ico">🏢</span><span>Visão Geral</span></a></li>
+    <li><a href="#estrutura"><span class="nl-ico">🪜</span><span>Trilhas de Carreira</span></a></li>
+    <li><a href="#descricao"><span class="nl-ico">📋</span><span>Descrições de Cargos</span></a></li>
+    <li><a href="#comunicados"><span class="nl-ico">📣</span><span>Comunicados</span></a></li>
+    <li><a href="#saude"><span class="nl-ico">🩺</span><span>Saúde Preventiva</span></a></li>
+    <li><a href="#sesmt"><span class="nl-ico">🦺</span><span>SESMT</span></a></li>
+    <li><a href="#equidade"><span class="nl-ico">⚖️</span><span>Equidade</span></a></li>
+    <li><a href="#compliance"><span class="nl-ico">📘</span><span>Compliance</span></a></li>
   </ul>
-</nav>
+  <div class="sidebar-foot">
+    <strong>ERA TÉCNICA — RH</strong><br>
+    📧 comunicacao@eratecnica.com.br
+  </div>
+</aside>
 
 <!-- HERO -->
 <section class="hero">
-  <h1 class="hero-rh-title">RECURSOS<br><span class="accent">HUMANOS</span></h1>
-  <p class="hero-sub">Portal de consulta com estrutura de cargos, trilhas de carreira, descrições de funções, código de ética e comunicados internos.</p>
-  <div class="hero-stats">
-    <div class="stat-block"><strong>15</strong><span>Áreas mapeadas</span></div>
-    <div class="stat-block"><strong>50+</strong><span>Cargos estruturados</span></div>
-    <div class="stat-block"><strong>3</strong><span>Níveis de progressão</span></div>
+  <div>
+    <div class="hero-eyebrow"><div class="dot"></div><span>Recursos Humanos</span></div>
+    <h1 class="hero-rh-title">PORTAL DO<br><span class="accent">COLABORADOR</span></h1>
+    <p class="hero-sub">Portal de consulta com estrutura de cargos, trilhas de carreira, descrições de cargos, código de ética e comunicados internos.</p>
+    <div class="hero-stats">
+      <div class="stat-block"><strong>15</strong><span>Áreas mapeadas</span></div>
+      <div class="stat-block"><strong>50+</strong><span>Cargos estruturados</span></div>
+      <div class="stat-block"><strong>3</strong><span>Níveis de progressão</span></div>
+    </div>
   </div>
+  <svg class="hero-art" viewBox="0 0 440 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração: equipe unida">
+  <circle cx="220" cy="168" r="128" fill="none" stroke="rgba(170,255,0,.28)" stroke-width="2" stroke-dasharray="5 9"/>
+  <ellipse cx="220" cy="292" rx="180" ry="18" fill="rgba(255,255,255,.06)"/>
+  <!-- equipe -->
+  <g>
+    <circle cx="84" cy="162" r="15" fill="#5aaa5a"/>
+    <rect x="58" y="184" width="52" height="46" rx="23" fill="#5aaa5a"/>
+  </g>
+  <g>
+    <circle cx="356" cy="162" r="15" fill="#5aaa5a"/>
+    <rect x="330" y="184" width="52" height="46" rx="23" fill="#5aaa5a"/>
+  </g>
+  <g>
+    <circle cx="152" cy="140" r="17" fill="#8dcc8d"/>
+    <rect x="123" y="164" width="58" height="52" rx="26" fill="#8dcc8d"/>
+  </g>
+  <g>
+    <circle cx="288" cy="140" r="17" fill="#8dcc8d"/>
+    <rect x="259" y="164" width="58" height="52" rx="26" fill="#8dcc8d"/>
+  </g>
+  <g>
+    <circle cx="220" cy="120" r="20" fill="#aaff00"/>
+    <rect x="186" y="148" width="68" height="60" rx="30" fill="#aaff00"/>
+  </g>
+  <text x="220" y="262" text-anchor="middle" fill="rgba(255,255,255,.78)" font-family="Barlow Condensed, sans-serif" font-size="17" font-weight="700" letter-spacing="5">UM SÓ TIME</text>
+</svg>
 </section>
+
 
 <!-- VISÃO GERAL -->
 <section class="section" id="visao-geral">
@@ -388,14 +493,14 @@
     <div class="overview-card" onclick="selectDept('compras')"><div class="card-num">02</div><h3>Compras</h3><p>Adquire materiais, insumos e serviços, homologa fornecedores e controla contratos de suprimentos.</p></div>
     <div class="overview-card" onclick="selectDept('contabilfiscal')"><div class="card-num">03</div><h3>Contábil / Fiscal</h3><p>Executa a escrituração contábil e fiscal, apura impostos e garante o cumprimento das obrigações tributárias e acessórias.</p></div>
     <div class="overview-card" onclick="selectDept('contratos')"><div class="card-num">04</div><h3>Contratos</h3><p>Administra o ciclo de vida dos contratos firmados, controlando cláusulas, prazos, medições e conformidade contratual.</p></div>
-    <div class="overview-card" onclick="selectDept('controladoria')"><div class="card-num">05</div><h3>Controladoria</h3><p>Controla orçamentos, custos por contrato e conformidade fiscal, gerando relatórios gerenciais para a diretoria.</p></div>
+    <div class="overview-card" onclick="selectDept('controladoria')"><div class="card-num">05</div><h3>Controladoria</h3><p>Controla orçamentos, custos por contrato e conformidade fiscal, gerando relatórios gerenciais para a Diretoria, contribuindo para a competitividade da ERA TÉCNICA.</p></div>
     <div class="overview-card" onclick="selectDept('financeiro')"><div class="card-num">06</div><h3>Financeiro</h3><p>Gerencia fluxo de caixa, contas a pagar e receber, conciliação bancária e planejamento financeiro da empresa.</p></div>
     <div class="overview-card" onclick="selectDept('gestaodeoobras')"><div class="card-num">07</div><h3>Gestão Administrativa de Obras</h3><p>Planeja, controla medições e indicadores físico-financeiros de contratos de obras e serviços públicos.</p></div>
     <div class="overview-card" onclick="selectDept('frotas')"><div class="card-num">08</div><h3>Gestão de Frotas</h3><p>Gerencia veículos, máquinas e equipamentos da empresa: manutenção, documentação, abastecimento e controle de custos.</p></div>
     <div class="overview-card" onclick="selectDept('juridico')"><div class="card-num">09</div><h3>Jurídico & Compliance</h3><p>Assessora contratos, contencioso cível e trabalhista, conformidade legal e programa de compliance.</p></div>
     <div class="overview-card" onclick="selectDept('licitacao')"><div class="card-num">10</div><h3>Licitação</h3><p>Prospecta e acompanha processos licitatórios, analisa editais e elabora propostas técnicas e comerciais.</p></div>
     <div class="overview-card" onclick="selectDept('obras')"><div class="card-num">11</div><h3>Obras</h3><p>Executa e supervisiona obras de infraestrutura urbana, pavimentação, drenagem e serviços públicos.</p></div>
-    <div class="overview-card" onclick="selectDept('rh')"><div class="card-num">12</div><h3>Recursos Humanos</h3><p>Recruta, seleciona e desenvolve colaboradores, gerencia folha de pagamento, DP e cultura organizacional.</p></div>
+    <div class="overview-card" onclick="selectDept('rh')"><div class="card-num">12</div><h3>Recursos Humanos</h3><p>Recruta e seleciona, calcula e analisa a folha de pagamentos, encargos, benefícios e dá suporte aos funcionários e gestores.</p></div>
     <div class="overview-card" onclick="selectDept('sst')"><div class="card-num">13</div><h3>Segurança do Trabalho</h3><p>Garante segurança e saúde dos colaboradores em campo, elabora laudos técnicos e assegura conformidade com NRs.</p></div>
     <div class="overview-card" onclick="selectDept('tapaburaco')"><div class="card-num">14</div><h3>Tapa Buraco</h3><p>Executa a conservação de pavimentos viários por meio da operação tapa-buraco em contratos públicos.</p></div>
     <div class="overview-card" onclick="selectDept('ti')"><div class="card-num">15</div><h3>Tecnologia da Informação</h3><p>Mantém a infraestrutura de tecnologia, dá suporte aos usuários e administra sistemas corporativos e análise de dados.</p></div>
@@ -595,7 +700,7 @@
     <div class="comunicado-card">
       <div class="com-meta"><span class="com-date">15 Jun 2026</span><span class="com-tag com-tag-novo">Novo</span></div>
       <h4>Portal Recursos Humanos</h4>
-      <p>A partir de 15/06/2026, a ERA TÉCNICA disponibiliza o Portal de Recursos Humanos com estrutura de cargos, descrição de funções, código de ética e comunicados. Colaboradores podem enviar sugestões e melhorias por e-mail para comunicacao@eratecnica.com.br.</p>
+      <p>A partir de 15/06/2026, a ERA TÉCNICA disponibiliza o Portal de Recursos Humanos com estrutura de cargos, descrição de cargos, código de ética e comunicados. Colaboradores podem enviar sugestões e melhorias por e-mail para comunicacao@eratecnica.com.br.</p>
       <div class="com-footer"><span class="com-author">Depto. de RH</span><button class="com-read" onclick="openCom(0)">LER MAIS →</button></div>
     </div>
     <div class="comunicado-card">
@@ -624,7 +729,7 @@
   <div class="section-header">
     <div class="section-eyebrow"><div class="bar"></div><span>Saúde Preventiva — Art. 169-A da CLT</span></div>
     <h2>CAMPANHAS DE<br>SAÚDE &amp; PREVENÇÃO</h2>
-    <p>A Lei nº 15.377/2026 incluiu o art. 169-A na CLT, que obriga as empresas a disponibilizar informações e promover ações de conscientização sobre saúde preventiva. A ERA TÉCNICA divulga as campanhas abaixo a todos os colaboradores.</p>
+    <p>A ERA TÉCNICA divulga e promove informações de conscientização sobre saúde preventiva.</p>
   </div>
   <div class="compliance-grid">
     <div class="compliance-card"><h4>Campanhas de Vacinação</h4><p>Divulgamos as campanhas oficiais de vacinação do Ministério da Saúde e das secretarias municipais e estaduais. Mantenha sua caderneta de vacinação em dia — informações nos murais, e-mail e grupos corporativos.</p></div>
@@ -664,10 +769,10 @@
     <p>A ERA TÉCNICA tem preocupação real com a equidade. Acreditamos que um ambiente com igualdade de oportunidades entre homens e mulheres — e respeito a todas as pessoas — torna a empresa melhor, mais justa e mais forte. Este programa reúne o que já fazemos e os compromissos que assumimos para os próximos ciclos.</p>
   </div>
   <div class="compliance-grid">
-    <div class="compliance-card"><span class="status-tag status-feito">Em prática</span><h4>Igualdade salarial por função</h4><p>A estrutura de cargos e steps publicada neste portal dá transparência aos critérios de remuneração e progressão: funções iguais têm os mesmos critérios, independentemente de gênero, em linha com a Lei 14.611/2023 (igualdade salarial).</p></div>
+    <div class="compliance-card"><span class="status-tag status-andamento">Em andamento</span><h4>Equiparação salarial</h4><p>Projeto em andamento, conduzido a partir das descrições de cargos, trilhas de carreira e responsabilidades publicadas neste portal: cargos iguais terão os mesmos critérios de remuneração e progressão, independentemente de gênero, em linha com a Lei 14.611/2023 (igualdade salarial).</p></div>
     <div class="compliance-card"><span class="status-tag status-feito">Em prática</span><h4>Tolerância zero a assédio e discriminação</h4><p>O Código de Ética veda qualquer forma de assédio, discriminação ou perseguição. As apurações são sigilosas e imparciais, com garantia de não retaliação a quem denuncia de boa-fé.</p></div>
     <div class="compliance-card"><span class="status-tag status-feito">Em prática</span><h4>Canal confidencial de denúncias</h4><p>Situações de desigualdade de tratamento, assédio ou discriminação podem ser relatadas pelo 0800 774 1117 ou compliance@eratecnica.com.br — de forma confidencial e segura.</p></div>
-    <div class="compliance-card"><span class="status-tag status-feito">Em prática</span><h4>Seleção com foco em competências</h4><p>Nossos processos de recrutamento e seleção avaliam competências, formação e experiência descritas nas fichas de cargo — critérios objetivos que valem igualmente para todas as pessoas candidatas.</p></div>
+    <div class="compliance-card"><span class="status-tag status-plano">Próximas ações</span><h4>Seleção com foco em competências</h4><p>Nossos processos de recrutamento e seleção passarão a avaliar competências, formação e experiência descritas nas fichas de cargo — critérios objetivos que valem igualmente para todas as pessoas candidatas.</p></div>
     <div class="compliance-card"><span class="status-tag status-plano">Próximas ações</span><h4>Censo interno de diversidade</h4><p>Mapeamento da presença de mulheres por área, cargo e nível para orientar metas de contratação, desenvolvimento e promoção — incluindo as áreas operacionais e de engenharia.</p></div>
     <div class="compliance-card"><span class="status-tag status-plano">Próximas ações</span><h4>Mulheres na liderança e na operação</h4><p>Metas de ampliação da participação feminina em posições de liderança e em funções técnicas e operacionais, com incentivo à formação de operadoras, técnicas e engenheiras.</p></div>
     <div class="compliance-card"><span class="status-tag status-plano">Próximas ações</span><h4>Capacitação de lideranças</h4><p>Treinamentos periódicos para gestores e supervisores sobre viés inconsciente, prevenção ao assédio e gestão inclusiva de equipes em escritório e em campo.</p></div>
@@ -1323,6 +1428,21 @@ window.addEventListener('scroll', function() {
   document.querySelectorAll('.nav-links a').forEach(function(a) {
     a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
   });
+});
+</script>
+
+<script>
+/* Modelo 2 — sidebar */
+function toggleNav(){
+  var s = document.getElementById('sidebar');
+  var open = s.classList.toggle('open');
+  var t = document.querySelector('.nav-toggle');
+  if (t) t.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+document.addEventListener('click', function(e){
+  if (e.target.closest && e.target.closest('.sidebar .nav-links a')) {
+    document.getElementById('sidebar').classList.remove('open');
+  }
 });
 </script>
 </body>

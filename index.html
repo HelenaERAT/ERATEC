@@ -415,6 +415,50 @@
     .hero{padding-top:88px}
   }
 
+
+  /* ── BUSCA DE COMUNICADOS ── */
+  .com-search-wrap { display:flex; align-items:center; gap:14px; margin-bottom:36px; }
+  .com-search-box { flex:1; position:relative; }
+  .com-search-box svg { position:absolute; left:16px; top:50%; transform:translateY(-50%); pointer-events:none; }
+  .com-search-input { width:100%; padding:13px 18px 13px 46px; border:2px solid var(--border); border-radius:14px; background:var(--white); font-family:'Barlow',sans-serif; font-size:14px; color:var(--ink); outline:none; transition:border-color .2s, box-shadow .2s; }
+  .com-search-input:focus { border-color:var(--lime); box-shadow:0 0 0 3px rgba(170,255,0,.15); }
+  .com-search-input::placeholder { color:var(--muted); }
+  .com-count-badge { font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:700; letter-spacing:2px; color:var(--muted); text-transform:uppercase; white-space:nowrap; }
+  .com-empty { grid-column:1/-1; text-align:center; padding:56px 24px; color:var(--muted); font-size:15px; background:var(--white); border-radius:16px; border:1px solid var(--border); }
+  .com-empty svg { display:block; margin:0 auto 16px; opacity:.3; }
+
+  /* ── CAMPANHAS VISUAIS ── */
+  .camp-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:20px; margin-bottom:36px; }
+  .camp-card { border-radius:20px; overflow:hidden; cursor:pointer; transition:transform .22s, box-shadow .22s; box-shadow:0 4px 14px rgba(13,26,13,.1); border:1px solid rgba(0,0,0,.06); }
+  .camp-card:hover { transform:translateY(-6px); box-shadow:0 18px 36px rgba(13,26,13,.18); }
+  .camp-card-visual { padding:36px 28px 30px; display:flex; flex-direction:column; align-items:center; gap:16px; position:relative; overflow:hidden; }
+  .camp-card-visual::before { content:''; position:absolute; inset:0; background:inherit; opacity:1; }
+  .camp-card-visual svg { position:relative; z-index:1; filter:drop-shadow(0 4px 10px rgba(0,0,0,.18)); }
+  .camp-card-visual-label { position:relative; z-index:1; font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:rgba(255,255,255,.75); }
+  .camp-card-body { background:var(--white); padding:20px 22px 22px; }
+  .camp-card-body h4 { font-family:'Barlow Condensed',sans-serif; font-size:20px; font-weight:900; text-transform:uppercase; color:var(--ink); letter-spacing:.3px; margin-bottom:6px; line-height:1.1; }
+  .camp-card-body p { font-size:13px; color:var(--muted); line-height:1.6; font-weight:300; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .camp-card-cta { display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:12px; border-top:1px solid var(--border); }
+  .camp-card-cta span { font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--g2); }
+  .camp-card-cta svg { flex-shrink:0; }
+
+  /* modal campanha */
+  .camp-modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.62); z-index:310; align-items:flex-start; justify-content:center; padding:80px 20px 20px; overflow-y:auto; }
+  .camp-modal-overlay.open { display:flex; }
+  .camp-modal { background:var(--white); max-width:640px; width:100%; border-radius:20px; overflow:hidden; margin:auto; box-shadow:0 24px 60px rgba(0,0,0,.3); }
+  .camp-modal-top { padding:40px 40px 32px; display:flex; flex-direction:column; align-items:center; gap:20px; position:relative; }
+  .camp-modal-close { position:absolute; top:16px; right:18px; background:rgba(255,255,255,.22); border:none; width:36px; height:36px; border-radius:50%; color:#fff; font-size:18px; cursor:pointer; line-height:1; display:flex; align-items:center; justify-content:center; transition:background .18s; }
+  .camp-modal-close:hover { background:rgba(255,255,255,.4); }
+  .camp-modal-title { font-family:'Barlow Condensed',sans-serif; font-size:30px; font-weight:900; text-transform:uppercase; color:#fff; text-align:center; line-height:1.1; }
+  .camp-modal-body { padding:32px 40px 40px; }
+  .camp-modal-body p { font-size:15px; color:var(--ink); font-weight:300; line-height:1.8; }
+  .camp-modal-body p + p { margin-top:14px; }
+  .camp-modal-body ul { padding-left:0; list-style:none; margin-top:14px; }
+  .camp-modal-body ul li { padding-left:22px; position:relative; font-size:14px; color:var(--ink); font-weight:300; line-height:1.75; margin-bottom:8px; }
+  .camp-modal-body ul li::before { content:'▸'; position:absolute; left:0; color:var(--g3); font-size:12px; line-height:1.8; }
+  .camp-modal-highlight { background:var(--g7); border-left:4px solid var(--g3); padding:16px 20px; border-radius:0 10px 10px 0; margin-top:20px; font-size:14px; color:var(--ink); font-weight:300; line-height:1.7; }
+  .camp-modal-highlight strong { font-weight:600; }
+
 </style>
 </head>
 <body>
@@ -476,7 +520,6 @@
     <circle cx="220" cy="120" r="20" fill="#aaff00"/>
     <rect x="186" y="148" width="68" height="60" rx="30" fill="#aaff00"/>
   </g>
-  <text x="220" y="262" text-anchor="middle" fill="rgba(255,255,255,.78)" font-family="Barlow Condensed, sans-serif" font-size="17" font-weight="700" letter-spacing="5">UM SÓ TIME</text>
 </svg>
 </section>
 
@@ -534,17 +577,21 @@
 
   <div class="dept-panel active" id="panel-areasverdes">
     <div class="dept-intro"><div class="dept-intro-left"><div class="dept-intro-num">Áreas Verdes</div></div><div class="dept-intro-right"><h3>Áreas Verdes</h3><p>Execução e manutenção de serviços de jardinagem, poda, roçagem e conservação de espaços públicos e verdes.</p><div class="dept-intro-meta"><div class="dept-meta-item"><div class="dash"></div><span>3 níveis operacionais</span></div></div></div></div>
-    <div class="steps-label-row"><div class="tag">STEPS — Jardineiro / Operador de Áreas Verdes</div><div class="line"></div></div>
-    <div class="steps-grid"><table><thead><tr class="table-header-row"><th style="width:160px"></th><th><span class="th-role">Auxiliar de Áreas Verdes</span></th><th><span class="th-role">Jardineiro / Operador</span></th><th><span class="th-role">Encarregado de Áreas Verdes</span></th></tr></thead><tbody>
-    <tr><td class="label-col">Nível</td><td class="data-col">Operacional básico</td><td class="data-col cur-col">Operacional</td><td class="data-col">Operacional-tático</td></tr><tr><td class="label-col">Atuação</td><td class="data-col"><ul><li>Executa roçagem, varrição e limpeza de canteiros</li><li>Apoia na retirada de resíduos e entulhos</li><li>Trabalha sob supervisão direta do encarregado</li></ul></td><td class="data-col cur-col"><ul><li>Realiza poda, plantio e manutenção de espécies</li><li>Opera roçadeira costal e ferramentas manuais</li><li>Aplica adubação e defensivos com supervisão</li><li>Registra ocorrências e áreas atendidas</li></ul></td><td class="data-col"><ul><li>Organiza equipes e rotas de atendimento diário</li><li>Controla insumos, ferramentas e EPIs</li><li>Elabora relatórios de produção e ocorrências</li><li>Interface com fiscalização e clientes</li></ul></td></tr><tr><td class="label-col">Autonomia</td><td class="data-col"><span class="badge badge-low">Baixa</span></td><td class="data-col cur-col"><span class="badge badge-low">Média</span></td><td class="data-col"><span class="badge badge-mid">Média-alta</span></td></tr><tr><td class="label-col">Formação</td><td class="data-col">Ensino fundamental; NR-6 e NR-18</td><td class="data-col cur-col">Ensino médio; cursos de jardinagem e NR-31 desejável</td><td class="data-col">Ensino médio + experiência consolidada; Técnico em Agronomia desejável</td></tr><tr><td class="label-col">Experiência</td><td class="data-col">0 a 2 anos</td><td class="data-col cur-col">2 a 5 anos</td><td class="data-col">5+ anos</td></tr><tr><td class="label-col">Impacto</td><td class="data-col">Indireto — limpeza e conservação</td><td class="data-col cur-col">Direto — qualidade das áreas atendidas</td><td class="data-col">Direto — desempenho operacional da área</td></tr>
+    <div class="steps-label-row"><div class="tag">STEPS — Áreas Verdes</div><div class="line"></div></div>
+    <div class="steps-grid"><table><thead><tr class="table-header-row"><th style="width:160px"></th><th><span class="th-role">Ajudante de Serviços</span></th><th><span class="th-role">Jardineiro</span></th><th><span class="th-role">Líder</span></th></tr></thead><tbody>
+    <tr><td class="label-col">Nível</td><td class="data-col">Operacional básico</td><td class="data-col cur-col">Operacional</td><td class="data-col">Operacional-tático</td></tr><tr><td class="label-col">Atuação</td><td class="data-col"><ul><li>Executa roçagem, varrição e limpeza de canteiros</li><li>Apoia na retirada de resíduos e entulhos</li><li>Trabalha sob supervisão direta do encarregado</li></ul></td><td class="data-col cur-col"><ul><li>Realiza poda, plantio e manutenção de espécies</li><li>Opera roçadeira costal e ferramentas manuais</li><li>Aplica adubação e defensivos com supervisão</li><li>Registra ocorrências e áreas atendidas</li></ul></td><td class="data-col"><ul><li>Organiza equipes e rotas de atendimento diário</li><li>Controla insumos, ferramentas e EPIs</li><li>Elabora relatórios de produção e ocorrências</li><li>Interface com fiscalização e clientes</li></ul></td></tr><tr><td class="label-col">Autonomia</td><td class="data-col"><span class="badge badge-low">Baixa</span></td><td class="data-col cur-col"><span class="badge badge-low">Baixa</span></td><td class="data-col"><span class="badge badge-mid">Média</span></td></tr><tr><td class="label-col">Formação</td><td class="data-col">Ensino fundamental; NR-6 e NR-18</td><td class="data-col cur-col">Ensino médio; cursos de jardinagem e NR-31 desejável</td><td class="data-col">Ensino médio + experiência consolidada; Técnico em Agronomia desejável</td></tr><tr><td class="label-col">Experiência</td><td class="data-col">0 a 2 anos</td><td class="data-col cur-col">0 a 2 anos</td><td class="data-col">0 a 2 anos</td></tr><tr><td class="label-col">Impacto</td><td class="data-col">Indireto — limpeza e conservação</td><td class="data-col cur-col">Direto — qualidade das áreas atendidas</td><td class="data-col">Direto — desempenho operacional da área</td></tr>
     </tbody></table></div>
   </div>
 
   <div class="dept-panel" id="panel-compras">
-    <div class="dept-intro"><div class="dept-intro-left"><div class="dept-intro-num">Compras</div></div><div class="dept-intro-right"><h3>Compras</h3><p>Responsável pela aquisição de materiais, insumos e serviços, gestão de fornecedores e controle de contratos de compras.</p><div class="dept-intro-meta"><div class="dept-meta-item"><div class="dash"></div><span>3 níveis</span></div></div></div></div>
-    <div class="steps-label-row"><div class="tag">STEPS — Compras</div><div class="line"></div></div>
-    <div class="steps-grid"><table><thead><tr class="table-header-row"><th style="width:160px"></th><th><span class="th-role">Assistente de Compras</span></th><th><span class="th-role">Analista de Compras Sr</span></th><th><span class="th-role">Gestor de Compras</span></th></tr></thead><tbody>
-    <tr><td class="label-col">Nível</td><td class="data-col">Operacional</td><td class="data-col cur-col">Tático</td><td class="data-col">Estratégico</td></tr><tr><td class="label-col">Atuação</td><td class="data-col"><ul><li>Realiza cotações e pedidos de compra</li><li>Controla prazos de entrega e documentação</li><li>Organiza cadastro de fornecedores</li></ul></td><td class="data-col cur-col"><ul><li>Negocia contratos e condições com fornecedores</li><li>Analisa propostas e conduz concorrências</li><li>Controla indicadores de desempenho de fornecedores</li><li>Garante conformidade com políticas internas</li></ul></td><td class="data-col"><ul><li>Define estratégia e política de compras</li><li>Gerencia contratos estratégicos e homologação</li><li>Desenvolve base de fornecedores qualificados</li><li>Reporta indicadores à diretoria</li></ul></td></tr><tr><td class="label-col">Autonomia</td><td class="data-col"><span class="badge badge-low">Baixa</span></td><td class="data-col cur-col"><span class="badge badge-mid">Média-alta</span></td><td class="data-col"><span class="badge badge-high">Alta</span></td></tr><tr><td class="label-col">Formação</td><td class="data-col">Superior em andamento em Adm. ou Logística</td><td class="data-col cur-col">Superior completo em Adm., Engenharia ou Logística</td><td class="data-col">Superior completo + MBA em Supply Chain desejável</td></tr><tr><td class="label-col">Experiência</td><td class="data-col">0 a 3 anos</td><td class="data-col cur-col">4 a 8 anos</td><td class="data-col">8+ anos</td></tr><tr><td class="label-col">Impacto</td><td class="data-col">Indireto — suporte ao processo de compras</td><td class="data-col cur-col">Direto — custo e qualidade das aquisições</td><td class="data-col">Amplo — rentabilidade e cadeia de suprimentos</td></tr>
+    <div class="dept-intro"><div class="dept-intro-left"><div class="dept-intro-num">Compras</div></div><div class="dept-intro-right"><h3>Compras</h3><p>Responsável pela aquisição de materiais, insumos e serviços, gestão de fornecedores e controle de contratos de compras.</p><div class="dept-intro-meta"><div class="dept-meta-item"><div class="dash"></div><span>6 níveis</span></div></div></div></div>
+    <div class="steps-label-row"><div class="tag">STEPS — Compras (Operacional)</div><div class="line"></div></div>
+    <div class="steps-grid"><table><thead><tr class="table-header-row"><th style="width:160px"></th><th><span class="th-role">Auxiliar Administrativo</span></th><th><span class="th-role">Assistente Administrativo</span></th><th><span class="th-role">Assistente de Compras</span></th></tr></thead><tbody>
+    <tr><td class="label-col">Nível</td><td class="data-col">Operacional</td><td class="data-col">Operacional</td><td class="data-col">Operacional</td></tr><tr><td class="label-col">Atuação</td><td class="data-col"><ul><li>Organiza e arquiva documentação de compras</li><li>Dá suporte ao atendimento de fornecedores e áreas internas</li><li>Apoia o controle de recebimento de notas fiscais</li></ul></td><td class="data-col"><ul><li>Emite e acompanha pedidos de compra simples</li><li>Mantém atualizado o cadastro de fornecedores</li><li>Apoia a conferência de notas fiscais e contratos</li></ul></td><td class="data-col"><ul><li>Realiza cotações e pedidos de compra</li><li>Controla prazos de entrega e documentação</li><li>Organiza cadastro de fornecedores</li></ul></td></tr><tr><td class="label-col">Autonomia</td><td class="data-col"><span class="badge badge-low">Baixa</span></td><td class="data-col"><span class="badge badge-low">Baixa</span></td><td class="data-col"><span class="badge badge-low">Baixa</span></td></tr><tr><td class="label-col">Formação</td><td class="data-col">Ensino médio completo</td><td class="data-col">Ensino médio completo; superior em andamento em Adm. ou Logística desejável</td><td class="data-col">Superior em andamento em Adm. ou Logística</td></tr><tr><td class="label-col">Experiência</td><td class="data-col">0 a 1 ano</td><td class="data-col">1 a 2 anos</td><td class="data-col">0 a 3 anos</td></tr><tr><td class="label-col">Impacto</td><td class="data-col">Indireto — suporte administrativo básico ao setor</td><td class="data-col">Indireto — suporte operacional ao processo de compras</td><td class="data-col">Indireto — suporte ao processo de compras</td></tr>
+    </tbody></table></div>
+    <div class="steps-label-row"><div class="tag">STEPS — Compras (Analistas)</div><div class="line"></div></div>
+    <div class="steps-grid"><table><thead><tr class="table-header-row"><th style="width:160px"></th><th><span class="th-role">Analista de Compras Jr</span></th><th><span class="th-role">Analista de Compras Pl</span></th><th><span class="th-role">Analista de Compras Sr</span></th></tr></thead><tbody>
+    <tr><td class="label-col">Nível</td><td class="data-col">Tático-operacional</td><td class="data-col cur-col">Tático</td><td class="data-col">Tático-estratégico</td></tr><tr><td class="label-col">Atuação</td><td class="data-col"><ul><li>Realiza cotações e negociações de baixa complexidade</li><li>Analisa propostas técnicas e comerciais de fornecedores</li><li>Acompanha prazos de entrega de materiais e serviços de obra</li><li>Apoia a elaboração de mapas comparativos de preços</li></ul></td><td class="data-col cur-col"><ul><li>Negocia contratos e condições com fornecedores</li><li>Conduz processos de concorrência</li><li>Controla indicadores de desempenho de fornecedores</li><li>Garante conformidade com políticas internas e especificações técnicas de obra</li></ul></td><td class="data-col"><ul><li>Gerencia portfólio de fornecedores estratégicos e materiais críticos</li><li>Conduz negociações de contratos de maior complexidade e valor</li><li>Desenvolve estratégias de sourcing e redução de custos</li><li>Atua com a engenharia na homologação técnica de fornecedores</li></ul></td></tr><tr><td class="label-col">Autonomia</td><td class="data-col"><span class="badge badge-low">Baixa-média</span></td><td class="data-col cur-col"><span class="badge badge-mid">Média-alta</span></td><td class="data-col"><span class="badge badge-high">Alta</span></td></tr><tr><td class="label-col">Formação</td><td class="data-col">Superior completo em Administração, Engenharia ou Logística</td><td class="data-col cur-col">Superior completo em Adm., Engenharia ou Logística; pós-graduação desejável</td><td class="data-col">Superior completo em Engenharia, Administração ou Logística; MBA em Supply Chain desejável</td></tr><tr><td class="label-col">Experiência</td><td class="data-col">1 a 3 anos</td><td class="data-col cur-col">3 a 6 anos</td><td class="data-col">6+ anos</td></tr><tr><td class="label-col">Impacto</td><td class="data-col">Direto — custo e prazo de aquisições de menor complexidade</td><td class="data-col cur-col">Direto — custo, qualidade e prazo das aquisições para obras</td><td class="data-col">Amplo — estratégia de suprimentos e rentabilidade dos contratos de obras</td></tr>
     </tbody></table></div>
   </div>
 
@@ -557,15 +604,23 @@
   </div>
 
   <div class="dept-panel" id="panel-financeiro">
-    <div class="dept-intro"><div class="dept-intro-left"><div class="dept-intro-num">Financeiro</div></div><div class="dept-intro-right"><h3>Financeiro</h3><p>Planejamento financeiro, fluxo de caixa, contas a pagar e receber, conciliação bancária e gestão de recursos da empresa.</p><div class="dept-intro-meta"><div class="dept-meta-item"><div class="dash"></div><span>3 níveis</span></div></div></div></div>
-    <div class="steps-label-row"><div class="tag">STEPS — Financeiro</div><div class="line"></div></div>
-    <div class="steps-grid"><table><thead><tr class="table-header-row"><th style="width:160px"></th><th><span class="th-role">Analista Financeiro Jr</span></th><th><span class="th-role">Analista Financeiro Pl</span></th><th><span class="th-role">Gestor Financeiro</span></th></tr></thead><tbody>
-    <tr><td class="label-col">Nível</td><td class="data-col">Operacional</td><td class="data-col cur-col">Tático</td><td class="data-col">Estratégico</td></tr><tr><td class="label-col">Atuação</td><td class="data-col"><ul><li>Lança e concilia contas a pagar e receber</li><li>Apoia fechamento mensal e relatórios de caixa</li><li>Controla documentação fiscal e bancária</li></ul></td><td class="data-col cur-col"><ul><li>Elabora projeções de fluxo de caixa</li><li>Controla pagamentos e recebimentos de contratos</li><li>Analisa desvios e propõe ações corretivas</li><li>Apoia planejamento financeiro mensal e anual</li></ul></td><td class="data-col"><ul><li>Dirige planejamento financeiro e orçamento anual</li><li>Garante liquidez e rentabilidade da empresa</li><li>Conduz relacionamento com bancos e investidores</li><li>Define políticas financeiras e de crédito</li></ul></td></tr><tr><td class="label-col">Autonomia</td><td class="data-col"><span class="badge badge-low">Baixa-média</span></td><td class="data-col cur-col"><span class="badge badge-mid">Média-alta</span></td><td class="data-col"><span class="badge badge-high">Alta</span></td></tr><tr><td class="label-col">Formação</td><td class="data-col">Superior em Ciências Contábeis, Adm. ou Economia</td><td class="data-col cur-col">Superior completo + especialização em Finanças desejável</td><td class="data-col">Superior completo + MBA em Finanças Corporativas</td></tr><tr><td class="label-col">Experiência</td><td class="data-col">0 a 3 anos</td><td class="data-col cur-col">3 a 7 anos</td><td class="data-col">8+ anos</td></tr><tr><td class="label-col">Impacto</td><td class="data-col">Indireto — suporte ao controle financeiro</td><td class="data-col cur-col">Direto — saúde do fluxo de caixa</td><td class="data-col">Amplo — sustentabilidade financeira da empresa</td></tr>
+    <div class="dept-intro"><div class="dept-intro-left"><div class="dept-intro-num">Financeiro</div></div><div class="dept-intro-right"><h3>Financeiro</h3><p>Planejamento financeiro, fluxo de caixa, contas a pagar e receber, conciliação bancária e gestão de recursos da empresa.</p><div class="dept-intro-meta"><div class="dept-meta-item"><div class="dash"></div><span>7 níveis</span></div></div></div></div>
+    <div class="steps-label-row"><div class="tag">STEPS — Financeiro (Analistas)</div><div class="line"></div></div>
+    <div class="steps-grid"><table><thead><tr class="table-header-row"><th style="width:160px"></th><th><span class="th-role">Analista Financeiro Jr</span></th><th><span class="th-role">Analista Financeiro Pl</span></th><th><span class="th-role">Analista Financeiro Sr</span></th></tr></thead><tbody>
+    <tr><td class="label-col">Nível</td><td class="data-col">Operacional</td><td class="data-col cur-col">Tático</td><td class="data-col">Tático-estratégico</td></tr><tr><td class="label-col">Atuação</td><td class="data-col"><ul><li>Lança e concilia contas a pagar e receber</li><li>Apoia fechamento mensal e relatórios de caixa</li><li>Controla documentação fiscal e bancária</li></ul></td><td class="data-col cur-col"><ul><li>Elabora projeções de fluxo de caixa</li><li>Controla pagamentos e recebimentos de contratos</li><li>Analisa desvios e propõe ações corretivas</li><li>Apoia planejamento financeiro mensal e anual</li></ul></td><td class="data-col"><ul><li>Consolida indicadores financeiros utilizando fontes externas (bancos, mercado, sistemas de open finance) para enriquecer análises</li><li>Realiza análises de cenário e projeções avançadas de fluxo de caixa</li><li>Audita e valida informações financeiras de múltiplas fontes</li><li>Apoia diretamente o Gestor Financeiro na tomada de decisão</li></ul></td></tr><tr><td class="label-col">Autonomia</td><td class="data-col"><span class="badge badge-low">Baixa-média</span></td><td class="data-col cur-col"><span class="badge badge-mid">Média-alta</span></td><td class="data-col"><span class="badge badge-high">Alta</span></td></tr><tr><td class="label-col">Formação</td><td class="data-col">Superior em Ciências Contábeis, Adm. ou Economia</td><td class="data-col cur-col">Superior completo + especialização em Finanças desejável</td><td class="data-col">Superior completo + especialização/MBA em Finanças</td></tr><tr><td class="label-col">Experiência</td><td class="data-col">0 a 3 anos</td><td class="data-col cur-col">3 a 7 anos</td><td class="data-col">7 a 10 anos</td></tr><tr><td class="label-col">Impacto</td><td class="data-col">Indireto — suporte ao controle financeiro</td><td class="data-col cur-col">Direto — saúde do fluxo de caixa</td><td class="data-col">Direto — qualidade e confiabilidade das informações financeiras estratégicas</td></tr>
+    </tbody></table></div>
+    <div class="steps-label-row"><div class="tag">STEPS — Financeiro (Supervisores)</div><div class="line"></div></div>
+    <div class="steps-grid"><table><thead><tr class="table-header-row"><th style="width:160px"></th><th><span class="th-role">Supervisor Financeiro Jr</span></th><th><span class="th-role">Supervisor Financeiro Pl</span></th><th><span class="th-role">Supervisor Financeiro Sr</span></th></tr></thead><tbody>
+    <tr><td class="label-col">Nível</td><td class="data-col">Supervisão tática</td><td class="data-col">Supervisão tático-estratégica</td><td class="data-col">Supervisão estratégica</td></tr><tr><td class="label-col">Atuação</td><td class="data-col"><ul><li>Recebe diretrizes e informações do Gestor Financeiro e desdobra em metas para a equipe</li><li>Acompanha indicadores financeiros diários</li><li>Supervisiona rotinas de contas a pagar/receber e conciliações</li><li>Apoia a elaboração de relatórios de acompanhamento</li></ul></td><td class="data-col"><ul><li>Coordena a equipe de analistas financeiros</li><li>Monitora fluxo de caixa e indicadores de liquidez</li><li>Revisa e valida relatórios financeiros antes do envio à gestão</li><li>Propõe melhorias de processos financeiros</li></ul></td><td class="data-col"><ul><li>Atua como elo entre a equipe financeira e o Gestor Financeiro</li><li>Conduz análises críticas para suporte a decisões estratégicas</li><li>Representa a área financeira em reuniões com diretoria e bancos</li><li>Supervisiona os Supervisores Jr e Pl</li></ul></td></tr><tr><td class="label-col">Autonomia</td><td class="data-col"><span class="badge badge-mid">Média-alta</span></td><td class="data-col"><span class="badge badge-high">Alta</span></td><td class="data-col"><span class="badge badge-high">Alta</span></td></tr><tr><td class="label-col">Formação</td><td class="data-col">Superior completo + especialização em Finanças ou Controladoria</td><td class="data-col">Superior completo + MBA em Finanças desejável</td><td class="data-col">Superior completo + MBA em Finanças Corporativas</td></tr><tr><td class="label-col">Experiência</td><td class="data-col">8 a 11 anos</td><td class="data-col">10 a 14 anos</td><td class="data-col">13+ anos</td></tr><tr><td class="label-col">Impacto</td><td class="data-col">Direto — alinhamento entre diretrizes da gestão e execução da equipe</td><td class="data-col">Direto — eficiência e confiabilidade dos processos financeiros</td><td class="data-col">Amplo — suporte direto à estratégia financeira da empresa</td></tr>
+    </tbody></table></div>
+    <div class="steps-label-row"><div class="tag">STEPS — Financeiro (Gestão)</div><div class="line"></div></div>
+    <div class="steps-grid"><table><thead><tr class="table-header-row"><th style="width:160px"></th><th><span class="th-role">Gestor Financeiro</span></th></tr></thead><tbody>
+    <tr><td class="label-col">Nível</td><td class="data-col">Estratégico</td></tr><tr><td class="label-col">Atuação</td><td class="data-col"><ul><li>Dirige planejamento financeiro e orçamento anual</li><li>Garante liquidez e rentabilidade da empresa</li><li>Conduz relacionamento com bancos e investidores</li><li>Define políticas financeiras e de crédito</li></ul></td></tr><tr><td class="label-col">Autonomia</td><td class="data-col"><span class="badge badge-high">Alta</span></td></tr><tr><td class="label-col">Formação</td><td class="data-col">Superior completo + MBA em Finanças Corporativas</td></tr><tr><td class="label-col">Experiência</td><td class="data-col">15+ anos</td></tr><tr><td class="label-col">Impacto</td><td class="data-col">Amplo — sustentabilidade financeira da empresa</td></tr>
     </tbody></table></div>
   </div>
 
   <div class="dept-panel" id="panel-gestaodeoobras">
-    <div class="dept-intro"><div class="dept-intro-left"><div class="dept-intro-num">Gestão Administrativa de Obras</div></div><div class="dept-intro-right"><h3>Gestão Administrativa de Obras</h3><p>Planejamento, controle físico-financeiro, medições e gestão administrativa de contratos de obras e serviços públicos.</p><div class="dept-intro-meta"><div class="dept-meta-item"><div class="dash"></div><span>Analistas de Gestão C, B e A</span></div></div></div></div>
+    <div class="dept-intro"><div class="dept-intro-left"><div class="dept-intro-num">Gestão Administrativa de Obras</div></div><div class="dept-intro-right"><h3>Gestão Administrativa de Obras</h3><p>Planeja, controla equipe, medições e indicadores físico - financeiro de contrato de obras.</p><div class="dept-intro-meta"><div class="dept-meta-item"><div class="dash"></div><span>Analistas de Gestão C, B e A</span></div></div></div></div>
     <div class="steps-label-row"><div class="tag">STEPS — Analista de Gestão de Obras</div><div class="line"></div></div>
     <div class="steps-grid"><table><thead><tr class="table-header-row"><th style="width:160px"></th><th><span class="th-role">Analista de Gestão C</span></th><th><span class="th-role">Analista de Gestão B</span></th><th><span class="th-role">Analista de Gestão A</span></th></tr></thead><tbody>
     <tr><td class="label-col">Nível</td><td class="data-col">Operacional-administrativo</td><td class="data-col cur-col">Tático-administrativo</td><td class="data-col">Estratégico-administrativo</td></tr><tr><td class="label-col">Atuação</td><td class="data-col"><ul><li>Organiza documentação técnica e contratual de obras</li><li>Lança dados de medição, RDO e produtividade</li><li>Dá suporte ao preenchimento de relatórios e planilhas</li></ul></td><td class="data-col cur-col"><ul><li>Controla medições, avanços físicos e financeiros</li><li>Apura horas de equipe, equipamentos e subcontratados</li><li>Gera relatórios gerenciais de desempenho de contrato</li></ul></td><td class="data-col"><ul><li>Gerencia KPIs do contrato (prazo, custo, SLA)</li><li>Elabora relatórios executivos para cliente e diretoria</li><li>Coordena faturamento, QC e conformidade contratual</li><li>Lidera analistas C e B da equipe</li></ul></td></tr><tr><td class="label-col">Autonomia</td><td class="data-col"><span class="badge badge-low">Baixa</span></td><td class="data-col cur-col"><span class="badge badge-low">Média</span></td><td class="data-col"><span class="badge badge-mid">Alta</span></td></tr><tr><td class="label-col">Formação</td><td class="data-col">Superior em curso em Administração, Engenharia ou Gestão</td><td class="data-col cur-col">Superior completo em Administração, Engenharia ou Gestão</td><td class="data-col">Superior completo + especialização em Gestão de Contratos; ERP avançado</td></tr><tr><td class="label-col">Experiência</td><td class="data-col">0 a 2 anos</td><td class="data-col cur-col">2 a 4 anos</td><td class="data-col">4 a 8 anos</td></tr><tr><td class="label-col">Impacto</td><td class="data-col">Indireto — organização e controle documental</td><td class="data-col cur-col">Direto — controle administrativo e financeiro da obra</td><td class="data-col">Direto — desempenho administrativo-financeiro do contrato</td></tr>
@@ -696,14 +751,22 @@
     <h2>COMUNICADOS<br>&amp; AVISOS</h2>
     <p>Informativos oficiais do Departamento de Recursos Humanos para toda a equipe.</p>
   </div>
-  <div class="comunicados-grid">
-    <div class="comunicado-card">
+  <!-- BUSCA -->
+  <div class="com-search-wrap">
+    <div class="com-search-box">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7.5" cy="7.5" r="5.5" stroke="#587058" stroke-width="1.8"/><line x1="11.8" y1="11.8" x2="16" y2="16" stroke="#587058" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <input type="text" id="com-search-input" class="com-search-input" placeholder="Buscar comunicado por título, categoria ou autor..." oninput="filterComunicados()" aria-label="Buscar comunicados">
+    </div>
+    <span class="com-count-badge" id="com-count-badge"></span>
+  </div>
+  <div class="comunicados-grid" id="comunicados-grid">
+    <div class="comunicado-card" data-search="portal recursos humanos novo rh 15 jun 2026">
       <div class="com-meta"><span class="com-date">15 Jun 2026</span><span class="com-tag com-tag-novo">Novo</span></div>
       <h4>Portal Recursos Humanos</h4>
       <p>A partir de 15/06/2026, a ERA TÉCNICA disponibiliza o Portal de Recursos Humanos com estrutura de cargos, descrição de cargos, código de ética e comunicados. Colaboradores podem enviar sugestões e melhorias por e-mail para comunicacao@eratecnica.com.br.</p>
       <div class="com-footer"><span class="com-author">Depto. de RH</span><button class="com-read" onclick="openCom(0)">LER MAIS →</button></div>
     </div>
-    <div class="comunicado-card">
+    <div class="comunicado-card" data-search="holerite digital informativo comunicação rh 29 abr 2026 totvs itaú">
       <div class="com-meta"><span class="com-date">29 Abr 2026</span><span class="com-tag com-tag-info">Informativo</span></div>
       <h4>Novidade: Como Acessar seu Holerite de Forma Digital</h4>
       <p>O acesso ao holerite será realizado de forma digital por meio da plataforma Meu RH (TOTVS), além da opção de consulta pela internet e caixas eletrônicos Itaú para colaboradores que recebem pelo banco.</p>
@@ -729,19 +792,164 @@
   <div class="section-header">
     <div class="section-eyebrow"><div class="bar"></div><span>Saúde Preventiva — Art. 169-A da CLT</span></div>
     <h2>CAMPANHAS DE<br>SAÚDE &amp; PREVENÇÃO</h2>
-    <p>A ERA TÉCNICA divulga e promove informações de conscientização sobre saúde preventiva.</p>
+    <p>Escolha um tema e saiba mais. A ERA TÉCNICA promove saúde e prevenção para todos os colaboradores.</p>
   </div>
-  <div class="compliance-grid">
-    <div class="compliance-card"><h4>Campanhas de Vacinação</h4><p>Divulgamos as campanhas oficiais de vacinação do Ministério da Saúde e das secretarias municipais e estaduais. Mantenha sua caderneta de vacinação em dia — informações nos murais, e-mail e grupos corporativos.</p></div>
-    <div class="compliance-card"><h4>Prevenção ao HPV</h4><p>O HPV (Papilomavírus Humano) é a principal causa do câncer do colo do útero e está ligado a outros tipos de câncer. A vacina está disponível gratuitamente pelo SUS para os públicos previstos no calendário nacional.</p></div>
-    <div class="compliance-card"><h4>Outubro Rosa — Câncer de Mama</h4><p>O diagnóstico precoce salva vidas. Incentivamos a realização periódica de mamografia conforme orientação médica. Durante o Outubro Rosa, o RH e o SESMT promovem ações educativas nas unidades e frentes de obra.</p></div>
-    <div class="compliance-card"><h4>Câncer do Colo do Útero</h4><p>O exame preventivo (Papanicolau) é simples, rápido e disponível na rede pública. Colaboradoras têm direito a ausência remunerada para a realização do exame, conforme destacado abaixo.</p></div>
-    <div class="compliance-card"><h4>Novembro Azul — Câncer de Próstata</h4><p>É o segundo câncer mais comum entre homens no Brasil. Incentivamos os colaboradores a realizarem os exames preventivos conforme orientação médica, com ações de conscientização durante o Novembro Azul.</p></div>
-    <div class="compliance-card"><h4>Onde buscar orientação</h4><p>O SESMT e o RH estão à disposição para orientar sobre exames, campanhas e encaminhamentos. Materiais oficiais (cartilhas do Ministério da Saúde e do INCA) ficam disponíveis nos murais e canais internos.</p></div>
-  </div>
-  <div class="book-highlight" style="margin-top:24px"><strong>Direito do colaborador (art. 169-A da CLT):</strong> todo empregado pode se ausentar do trabalho por até <strong>3 (três) dias a cada 12 (doze) meses, sem prejuízo da remuneração</strong>, para a realização de exames preventivos de câncer de mama, de colo do útero e de próstata. A ausência deve ser comprovada por atestado ou declaração de realização do exame. Em caso de dúvida, procure o Departamento Pessoal.</div>
+
+  <!-- GRID DE CAMPANHAS -->
+  <div class="camp-grid">
+
+    <!-- 1. Vacinação -->
+    <div class="camp-card" onclick="openCamp(0)" role="button" tabindex="0" aria-label="Ver mais sobre Campanhas de Vacinação">
+      <div class="camp-card-visual" style="background:linear-gradient(135deg,#1a6b3a 0%,#2d9e5a 100%);">
+        <div class="camp-card-visual-label">Imunização</div>
+        <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="36" cy="36" r="34" fill="rgba(255,255,255,.12)"/>
+          <rect x="30" y="14" width="12" height="28" rx="6" fill="#fff"/>
+          <rect x="26" y="38" width="20" height="4" rx="2" fill="rgba(255,255,255,.5)"/>
+          <path d="M36 42 L36 58" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+          <path d="M22 22 L50 22" stroke="rgba(255,255,255,.4)" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="36" cy="28" r="4" fill="rgba(170,255,0,.8)"/>
+        </svg>
+      </div>
+      <div class="camp-card-body">
+        <h4>Campanhas de Vacinação</h4>
+        <p>Mantenha sua caderneta em dia com as campanhas oficiais do Ministério da Saúde.</p>
+        <div class="camp-card-cta">
+          <span>Saiba mais</span>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#2d6a2d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. HPV -->
+    <div class="camp-card" onclick="openCamp(1)" role="button" tabindex="0" aria-label="Ver mais sobre Prevenção ao HPV">
+      <div class="camp-card-visual" style="background:linear-gradient(135deg,#6a1a4a 0%,#b03880 100%);">
+        <div class="camp-card-visual-label">Prevenção</div>
+        <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="36" cy="36" r="34" fill="rgba(255,255,255,.12)"/>
+          <path d="M36 16 C36 16, 20 26, 20 38 C20 48, 27 56, 36 58 C45 56, 52 48, 52 38 C52 26, 36 16, 36 16Z" fill="rgba(255,255,255,.25)" stroke="#fff" stroke-width="1.5"/>
+          <path d="M28 38 L34 44 L45 30" stroke="#ffe066" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="camp-card-body">
+        <h4>Prevenção ao HPV</h4>
+        <p>A vacina contra HPV está disponível gratuitamente no SUS. Saiba como se proteger.</p>
+        <div class="camp-card-cta">
+          <span>Saiba mais</span>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#2d6a2d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Outubro Rosa -->
+    <div class="camp-card" onclick="openCamp(2)" role="button" tabindex="0" aria-label="Ver mais sobre Outubro Rosa">
+      <div class="camp-card-visual" style="background:linear-gradient(135deg,#a0184a 0%,#e05490 100%);">
+        <div class="camp-card-visual-label">Outubro Rosa</div>
+        <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="36" cy="36" r="34" fill="rgba(255,255,255,.12)"/>
+          <!-- ribbon -->
+          <path d="M36 20 C31 20, 26 24, 26 30 C26 36, 36 42, 36 42 C36 42, 46 36, 46 30 C46 24, 41 20, 36 20Z" fill="rgba(255,255,255,.9)"/>
+          <path d="M30 42 L26 56" stroke="rgba(255,255,255,.8)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M42 42 L46 56" stroke="rgba(255,255,255,.8)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M30 42 Q36 46 42 42" stroke="rgba(255,255,255,.8)" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="camp-card-body">
+        <h4>Outubro Rosa</h4>
+        <p>Câncer de mama: o diagnóstico precoce salva vidas. Realize a mamografia regularmente.</p>
+        <div class="camp-card-cta">
+          <span>Saiba mais</span>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#2d6a2d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Câncer do Colo do Útero -->
+    <div class="camp-card" onclick="openCamp(3)" role="button" tabindex="0" aria-label="Ver mais sobre Câncer do Colo do Útero">
+      <div class="camp-card-visual" style="background:linear-gradient(135deg,#7a1a1a 0%,#c04040 100%);">
+        <div class="camp-card-visual-label">Prevenção</div>
+        <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="36" cy="36" r="34" fill="rgba(255,255,255,.12)"/>
+          <!-- magnifier + calendar -->
+          <circle cx="33" cy="33" r="12" stroke="#fff" stroke-width="2.5" fill="rgba(255,255,255,.15)"/>
+          <line x1="42" y1="42" x2="52" y2="52" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+          <line x1="28" y1="33" x2="38" y2="33" stroke="rgba(255,255,0,.8)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="33" y1="28" x2="33" y2="38" stroke="rgba(255,255,0,.8)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="camp-card-body">
+        <h4>Câncer do Colo do Útero</h4>
+        <p>O exame Papanicolau é simples, rápido e disponível na rede pública. Colaboradoras têm direito a ausência remunerada.</p>
+        <div class="camp-card-cta">
+          <span>Saiba mais</span>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#2d6a2d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Novembro Azul -->
+    <div class="camp-card" onclick="openCamp(4)" role="button" tabindex="0" aria-label="Ver mais sobre Novembro Azul">
+      <div class="camp-card-visual" style="background:linear-gradient(135deg,#0a2a6e 0%,#1a6adc 100%);">
+        <div class="camp-card-visual-label">Novembro Azul</div>
+        <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="36" cy="36" r="34" fill="rgba(255,255,255,.12)"/>
+          <!-- male figure simplified -->
+          <circle cx="36" cy="24" r="9" fill="rgba(255,255,255,.9)"/>
+          <rect x="26" y="36" width="20" height="22" rx="10" fill="rgba(255,255,255,.75)"/>
+          <path d="M28 38 L44 38" stroke="#1a6adc" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="camp-card-body">
+        <h4>Novembro Azul</h4>
+        <p>Câncer de próstata: segundo mais comum entre homens. Faça os exames preventivos com seu médico.</p>
+        <div class="camp-card-cta">
+          <span>Saiba mais</span>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#2d6a2d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Onde buscar orientação -->
+    <div class="camp-card" onclick="openCamp(5)" role="button" tabindex="0" aria-label="Ver mais sobre Onde buscar orientação">
+      <div class="camp-card-visual" style="background:linear-gradient(135deg,#1a3a1a 0%,#3d8b3d 100%);">
+        <div class="camp-card-visual-label">Suporte</div>
+        <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="36" cy="36" r="34" fill="rgba(255,255,255,.12)"/>
+          <!-- team of 3 figures -->
+          <circle cx="36" cy="24" r="7" fill="#aaff00"/>
+          <rect x="27" y="34" width="18" height="16" rx="9" fill="#aaff00"/>
+          <circle cx="22" cy="27" r="5.5" fill="rgba(255,255,255,.75)"/>
+          <rect x="15" y="35" width="14" height="14" rx="7" fill="rgba(255,255,255,.6)"/>
+          <circle cx="50" cy="27" r="5.5" fill="rgba(255,255,255,.75)"/>
+          <rect x="43" y="35" width="14" height="14" rx="7" fill="rgba(255,255,255,.6)"/>
+        </svg>
+      </div>
+      <div class="camp-card-body">
+        <h4>Onde Buscar Orientação</h4>
+        <p>SESMT e RH à disposição para guiar sobre exames, campanhas e encaminhamentos de saúde.</p>
+        <div class="camp-card-cta">
+          <span>Saiba mais</span>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="#2d6a2d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /camp-grid -->
+
+  <div class="book-highlight"><strong>Direito do colaborador (art. 169-A da CLT):</strong> todo empregado pode se ausentar do trabalho por até <strong>3 (três) dias a cada 12 (doze) meses, sem prejuízo da remuneração</strong>, para a realização de exames preventivos de câncer de mama, de colo do útero e de próstata. A ausência deve ser comprovada por atestado ou declaração de realização do exame. Em caso de dúvida, procure o Departamento Pessoal.</div>
 </section>
 
+<!-- MODAL CAMPANHAS -->
+<div class="camp-modal-overlay" id="camp-modal-overlay" onclick="closeCamp(event)">
+  <div class="camp-modal" id="camp-modal">
+    <div class="camp-modal-top" id="camp-modal-top">
+      <button class="camp-modal-close" onclick="closeCamp()" aria-label="Fechar">✕</button>
+      <div id="camp-modal-icon"></div>
+      <h2 class="camp-modal-title" id="camp-modal-title"></h2>
+    </div>
+    <div class="camp-modal-body" id="camp-modal-body"></div>
+  </div>
+</div>
 <!-- ══ SESMT — NR-1 ══ -->
 <section class="section section-alt" id="sesmt">
   <div class="section-header">
@@ -1444,6 +1652,150 @@ document.addEventListener('click', function(e){
     document.getElementById('sidebar').classList.remove('open');
   }
 });
+
+
+/* ── BUSCA DE COMUNICADOS ── */
+function filterComunicados() {
+  const q = document.getElementById('com-search-input').value.trim().toLowerCase();
+  const cards = document.querySelectorAll('#comunicados-grid .comunicado-card');
+  let visible = 0;
+  cards.forEach(card => {
+    const text = (card.dataset.search || '') + ' ' + card.innerText.toLowerCase();
+    const show = !q || text.includes(q);
+    card.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  const badge = document.getElementById('com-count-badge');
+  if (badge) badge.textContent = q ? visible + ' resultado' + (visible !== 1 ? 's' : '') : '';
+  // show empty state
+  const grid = document.getElementById('comunicados-grid');
+  let empty = grid.querySelector('.com-empty');
+  if (visible === 0 && q) {
+    if (!empty) {
+      empty = document.createElement('div');
+      empty.className = 'com-empty';
+      empty.innerHTML = '<svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="17" cy="17" r="11" stroke="#587058" stroke-width="2"/><line x1="25" y1="25" x2="34" y2="34" stroke="#587058" stroke-width="2" stroke-linecap="round"/></svg><div>Nenhum comunicado encontrado para "<strong>' + q + '</strong>"</div>';
+      grid.appendChild(empty);
+    }
+  } else if (empty) {
+    empty.remove();
+  }
+}
+
+/* ── CAMPANHAS ── */
+const campData = [
+  {
+    title: 'Campanhas de Vacinação',
+    grad: 'linear-gradient(135deg,#1a6b3a 0%,#2d9e5a 100%)',
+    icon: '<svg width="56" height="56" viewBox="0 0 72 72" fill="none"><circle cx="36" cy="36" r="34" fill="rgba(255,255,255,.18)"/><rect x="30" y="14" width="12" height="28" rx="6" fill="#fff"/><rect x="26" y="38" width="20" height="4" rx="2" fill="rgba(255,255,255,.5)"/><path d="M36 42 L36 58" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="36" cy="28" r="4" fill="rgba(170,255,0,.85)"/></svg>',
+    body: `<p>A ERA TÉCNICA divulga as campanhas oficiais de vacinação do <strong>Ministério da Saúde</strong> e das secretarias municipais e estaduais.</p>
+    <p>A vacinação é uma das formas mais eficazes de prevenção de doenças. Manter o esquema vacinal atualizado protege você, sua família e seus colegas de trabalho.</p>
+    <ul>
+      <li>Consulte a caderneta de vacinação e verifique quais doses estão pendentes;</li>
+      <li>As vacinas do calendário nacional estão disponíveis gratuitamente nos postos de saúde do SUS;</li>
+      <li>Calendários específicos existem para crianças, adolescentes, adultos, idosos e grupos especiais;</li>
+      <li>Fique atento às campanhas sazonais (gripe, febre amarela, Covid-19 e outras).</li>
+    </ul>
+    <div class="camp-modal-highlight"><strong>Como saber mais:</strong> informações são disponibilizadas nos murais internos, e-mail corporativo e grupos de comunicação. Dúvidas? Procure o SESMT ou o Departamento de RH.</div>`
+  },
+  {
+    title: 'Prevenção ao HPV',
+    grad: 'linear-gradient(135deg,#6a1a4a 0%,#b03880 100%)',
+    icon: '<svg width="56" height="56" viewBox="0 0 72 72" fill="none"><circle cx="36" cy="36" r="34" fill="rgba(255,255,255,.18)"/><path d="M36 16 C36 16, 20 26, 20 38 C20 48, 27 56, 36 58 C45 56, 52 48, 52 38 C52 26, 36 16, 36 16Z" fill="rgba(255,255,255,.25)" stroke="#fff" stroke-width="1.5"/><path d="M28 38 L34 44 L45 30" stroke="#ffe066" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    body: `<p>O <strong>HPV (Papilomavírus Humano)</strong> é a infecção sexualmente transmissível mais comum no mundo e a principal causa do câncer do colo do útero — além de estar ligado a outros tipos de câncer e a verrugas genitais.</p>
+    <p>A boa notícia: existe vacina eficaz e ela é gratuita pelo SUS para os públicos previstos no calendário nacional.</p>
+    <ul>
+      <li>A vacina é oferecida gratuitamente pelo SUS para meninos e meninas de 9 a 14 anos;</li>
+      <li>Para imunossuprimidos e vítimas de violência sexual, a faixa etária pode ser diferente — consulte a UBS;</li>
+      <li>A vacinação não dispensa o uso de preservativos;</li>
+      <li>Para as mulheres, o Papanicolau continua sendo essencial mesmo após a vacinação.</li>
+    </ul>
+    <div class="camp-modal-highlight"><strong>Atenção:</strong> mulheres entre 25 e 64 anos devem realizar o exame Papanicolau periodicamente. Em caso de dúvidas, procure a Unidade Básica de Saúde (UBS) mais próxima ou o SESMT da sua unidade.</div>`
+  },
+  {
+    title: 'Outubro Rosa — Câncer de Mama',
+    grad: 'linear-gradient(135deg,#a0184a 0%,#e05490 100%)',
+    icon: '<svg width="56" height="56" viewBox="0 0 72 72" fill="none"><circle cx="36" cy="36" r="34" fill="rgba(255,255,255,.18)"/><path d="M36 20 C31 20, 26 24, 26 30 C26 36, 36 42, 36 42 C36 42, 46 36, 46 30 C46 24, 41 20, 36 20Z" fill="rgba(255,255,255,.9)"/><path d="M30 42 L26 56" stroke="rgba(255,255,255,.8)" stroke-width="3" stroke-linecap="round"/><path d="M42 42 L46 56" stroke="rgba(255,255,255,.8)" stroke-width="3" stroke-linecap="round"/><path d="M30 42 Q36 46 42 42" stroke="rgba(255,255,255,.8)" stroke-width="2.5" stroke-linecap="round"/></svg>',
+    body: `<p>O câncer de mama é o tipo mais frequente entre mulheres no Brasil e no mundo. O <strong>diagnóstico precoce</strong> é o fator mais importante para aumentar as chances de cura.</p>
+    <p>O Outubro Rosa é um movimento mundial de conscientização sobre o rastreamento e diagnóstico precoce do câncer de mama. Na ERA TÉCNICA, o RH e o SESMT promovem ações educativas durante esse período.</p>
+    <ul>
+      <li>Realize a <strong>mamografia</strong> periodicamente, conforme orientação médica (geralmente a partir dos 40 anos, ou antes em casos de histórico familiar);</li>
+      <li>Faça o autoexame regularmente e observe qualquer alteração;</li>
+      <li>Procure um médico imediatamente em caso de caroço, dor persistente ou alteração na pele ou mamilo;</li>
+      <li>O exame está disponível na rede pública pelo SUS.</li>
+    </ul>
+    <div class="camp-modal-highlight"><strong>Direito legal (art. 169-A CLT):</strong> você pode se ausentar do trabalho por até 3 dias por ano para realização de exames preventivos de câncer, sem perda de remuneração. Apresente o atestado ou declaração ao DP.</div>`
+  },
+  {
+    title: 'Câncer do Colo do Útero',
+    grad: 'linear-gradient(135deg,#7a1a1a 0%,#c04040 100%)',
+    icon: '<svg width="56" height="56" viewBox="0 0 72 72" fill="none"><circle cx="36" cy="36" r="34" fill="rgba(255,255,255,.18)"/><circle cx="33" cy="33" r="12" stroke="#fff" stroke-width="2.5" fill="rgba(255,255,255,.15)"/><line x1="42" y1="42" x2="52" y2="52" stroke="#fff" stroke-width="3" stroke-linecap="round"/><line x1="28" y1="33" x2="38" y2="33" stroke="rgba(255,255,0,.9)" stroke-width="2" stroke-linecap="round"/><line x1="33" y1="28" x2="33" y2="38" stroke="rgba(255,255,0,.9)" stroke-width="2" stroke-linecap="round"/></svg>',
+    body: `<p>O câncer do colo do útero é o terceiro tipo mais comum entre mulheres no Brasil. Quando diagnosticado precocemente, tem alta taxa de cura — e é totalmente <strong>evitável com rastreamento regular</strong>.</p>
+    <p>O exame preventivo (<strong>Papanicolau</strong>) é simples, rápido, indolor e disponível gratuitamente na rede pública de saúde.</p>
+    <ul>
+      <li>Mulheres entre <strong>25 e 64 anos</strong> devem realizar o Papanicolau a cada 3 anos após dois resultados normais consecutivos;</li>
+      <li>O exame detecta alterações nas células do colo do útero antes de se tornarem câncer;</li>
+      <li>HPV é a principal causa — a vacinação complementa o rastreamento, mas não o substitui;</li>
+      <li>Agende o exame na Unidade Básica de Saúde mais próxima — é gratuito.</li>
+    </ul>
+    <div class="camp-modal-highlight"><strong>Direito legal (art. 169-A CLT):</strong> você pode se ausentar por até 3 dias por ano para exames preventivos de câncer, sem perda de remuneração. Apresente o comprovante ao Departamento Pessoal.</div>`
+  },
+  {
+    title: 'Novembro Azul — Câncer de Próstata',
+    grad: 'linear-gradient(135deg,#0a2a6e 0%,#1a6adc 100%)',
+    icon: '<svg width="56" height="56" viewBox="0 0 72 72" fill="none"><circle cx="36" cy="36" r="34" fill="rgba(255,255,255,.18)"/><circle cx="36" cy="24" r="9" fill="rgba(255,255,255,.9)"/><rect x="26" y="36" width="20" height="22" rx="10" fill="rgba(255,255,255,.75)"/></svg>',
+    body: `<p>O câncer de próstata é o segundo tipo mais comum entre homens no Brasil — e o segundo que mais mata, atrás apenas do câncer de pulmão. <strong>Com detecção precoce, a cura é possível em quase 100% dos casos.</strong></p>
+    <p>O Novembro Azul é um movimento de conscientização sobre a importância da prevenção e do diagnóstico precoce. Na ERA TÉCNICA, promovemos ações de conscientização durante todo o mês.</p>
+    <ul>
+      <li>Homens acima de <strong>50 anos</strong> devem conversar com o médico sobre os exames preventivos (PSA e toque retal);</li>
+      <li>Homens com histórico familiar de câncer de próstata devem iniciar o rastreamento aos <strong>45 anos</strong>;</li>
+      <li>Muitos casos são assintomáticos nos estágios iniciais — por isso o rastreamento regular é fundamental;</li>
+      <li>O exame de PSA está disponível pelo SUS mediante solicitação médica.</li>
+    </ul>
+    <div class="camp-modal-highlight"><strong>Direito legal (art. 169-A CLT):</strong> você pode se ausentar por até 3 dias por ano para exames preventivos de câncer, sem perda de remuneração. Apresente o comprovante ao Departamento Pessoal.</div>`
+  },
+  {
+    title: 'Onde Buscar Orientação',
+    grad: 'linear-gradient(135deg,#1a3a1a 0%,#3d8b3d 100%)',
+    icon: '<svg width="56" height="56" viewBox="0 0 72 72" fill="none"><circle cx="36" cy="36" r="34" fill="rgba(255,255,255,.18)"/><circle cx="36" cy="24" r="7" fill="#aaff00"/><rect x="27" y="34" width="18" height="16" rx="9" fill="#aaff00"/><circle cx="22" cy="27" r="5.5" fill="rgba(255,255,255,.75)"/><rect x="15" y="35" width="14" height="14" rx="7" fill="rgba(255,255,255,.6)"/><circle cx="50" cy="27" r="5.5" fill="rgba(255,255,255,.75)"/><rect x="43" y="35" width="14" height="14" rx="7" fill="rgba(255,255,255,.6)"/></svg>',
+    body: `<p>O <strong>SESMT (Serviço Especializado em Segurança e em Medicina do Trabalho)</strong> e o <strong>Departamento de RH</strong> estão à disposição de todos os colaboradores para orientar sobre saúde preventiva, campanhas, encaminhamentos e direitos trabalhistas relacionados à saúde.</p>
+    <ul>
+      <li><strong>SESMT:</strong> dúvidas sobre saúde ocupacional, riscos no trabalho, exames periódicos e afastamentos;</li>
+      <li><strong>Departamento Pessoal (DP):</strong> orientações sobre ausências para exames preventivos e direitos assegurados pela CLT;</li>
+      <li><strong>Murais internos e grupos corporativos:</strong> materiais educativos e informes sobre campanhas vigentes;</li>
+      <li><strong>Cartilhas do Ministério da Saúde e do INCA</strong> disponíveis nos canais internos da empresa.</li>
+    </ul>
+    <div class="camp-modal-highlight">📧 <strong>comunicacao@eratecnica.com.br</strong> — envie dúvidas, sugestões ou solicite materiais informativos ao time de RH e Comunicação Interna.</div>`
+  }
+];
+
+function openCamp(idx) {
+  const c = campData[idx];
+  const overlay = document.getElementById('camp-modal-overlay');
+  const top = document.getElementById('camp-modal-top');
+  top.style.background = c.grad;
+  document.getElementById('camp-modal-icon').innerHTML = c.icon;
+  document.getElementById('camp-modal-title').textContent = c.title;
+  document.getElementById('camp-modal-body').innerHTML = c.body;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCamp(e) {
+  if (e && e.target !== document.getElementById('camp-modal-overlay') && !e.target.classList.contains('camp-modal-close')) return;
+  document.getElementById('camp-modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Keyboard: Enter/Space on camp-cards
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.camp-card').forEach(function(card, i) {
+    card.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCamp(i); }
+    });
+  });
+});
+
 </script>
 </body>
 </html>
